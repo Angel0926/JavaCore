@@ -8,11 +8,11 @@ public class BoolTest {
         b = true;
         System.out.println("b havasar e " + b);
         //xekavarum e if operatorin
-        if (b)
+        if (b){
             System.out.println("kod@ ashxatum e");
         b = false;
         if (b)
-            System.out.println("kod@ chi ashxatum");
+            System.out.println("kod@ chi ashxatum");}
         System.out.println("10 > 9 " + (10 > 9));
     }
 }
