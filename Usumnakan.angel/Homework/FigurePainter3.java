@@ -9,6 +9,5 @@ public class FigurePainter3 {
             }
             System.out.println();
         }
-
     }
 }
