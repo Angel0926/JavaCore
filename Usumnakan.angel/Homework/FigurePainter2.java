@@ -11,6 +11,7 @@ public class FigurePainter2 {
                 else
 
                     System.out.print("*");
+                System.out.print(" ");
             }
             System.out.println();
         }
