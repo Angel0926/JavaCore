@@ -1,4 +1,4 @@
-package Lesson6;
+package Lesson6and7;
 
 public class SampleSwitch {
         public static void main(String args[]) {

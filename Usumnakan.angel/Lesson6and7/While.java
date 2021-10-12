@@ -1,4 +1,4 @@
-package Lesson6;
+package Lesson6and7;
 
 public class While {
         public static void main(String args[]) {
