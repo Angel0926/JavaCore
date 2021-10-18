@@ -50,7 +50,7 @@ public class ArrBolola {
 
 
             //   Պետք է գրել կոդ, որը text մասիվից կստանա char[] result մասիվ, որը կլինի նույն տեքստը, առանց պռաբելների(իրար կողք կտպի barev)։
-            char[] text = {' ', ' ', 'b', 'a', 'r', 'e', 'v', ' ', ' '};
+            char[] text = {' ', ' ', 'b', 'a', 'r',  'e', 'v', ' ', ' '};
             System.out.print("5-");
             for (int n = 0; n < text.length; n++) {
                 char result[] = new char[text.length];
