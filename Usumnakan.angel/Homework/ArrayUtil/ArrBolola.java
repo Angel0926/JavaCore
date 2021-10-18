@@ -41,7 +41,7 @@ public class ArrBolola {
             System.out.print("4-");
             for (int f = 0; f < bolola3.length; f++) {
                 if (bolola3[f] != 'b')
-                continue;
+                    continue;
                 if (bolola3[f] == 'b' && bolola3[f + 2] == 'b') {
                     System.out.println("true");
                     break;
@@ -49,19 +49,19 @@ public class ArrBolola {
             }
 
 
+            //   Պետք է գրել կոդ, որը text մասիվից կստանա char[] result մասիվ, որը կլինի նույն տեքստը, առանց պռաբելների(իրար կողք կտպի barev)։
+            char[] text = {' ', ' ', 'b', 'a', 'r', 'e', 'v', ' ', ' '};
+            System.out.print("5-");
+            for (int n = 0; n < text.length; n++) {
+                char result[] = new char[text.length];
+                if ( text[n] !=' '){
+                        result[n] = text[n];
 
 
-        //   Պետք է գրել կոդ, որը text մասիվից կստանա char[] result մասիվ, որը կլինի նույն տեքստը, առանց պռաբելների(իրար կողք կտպի barev)։
-        char[] text = {' ', ' ', 'b', 'a', 'r', 'e', 'v', ' ', ' '};
-        System.out.print("5-");
-        for (int n = 0; n < text.length; n++) {
-            char result[] = new char[text.length];
-            if (text[n] != ' ') {
-                result[n] = text[n];
-
-                System.out.print(result[n]);
+                System.out.print(result[n] );
             }
-        }
 
+        }
         }}
+
 
