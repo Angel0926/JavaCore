@@ -2,10 +2,10 @@ package Lesson6and7;
 
 public class Search {
     public static void main(String args[]) {
-        int nums[] = {6, 8, 3, 7, 5, 6, 1, 4};
+        int nums[] = {6, 8, 3, 7, 6, 1, 4};
         int val = 5;
         boolean found = false;
-        for (int x : nums) {
+        for (int x : nums) {   
             if (x == val) {
                 found = true;
                 break;
@@ -13,6 +13,6 @@ public class Search {
         }
         if (found)
             System.out.println("Знaчeниe найдено!");
-
+        else System.out.println("blablabla");
     }
 }

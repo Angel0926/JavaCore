@@ -3,7 +3,7 @@ package Homework;
 public class FigurePainter {
     public static void main(String[] args) {
 
-        for (int i = 4; i > 0; i--) {
+       /* for (int i = 4; i > 0; i--) {
             for (int j = 4; j > i - 1; j--) {
 
                 System.out.print("* ");
@@ -39,7 +39,7 @@ public class FigurePainter {
             }
             System.out.println();
         }
-        System.out.println();
+        System.out.println();*/
         for (int i = 0; i < 4; i++) {
             for (int j = 4; j > i; j--) {
                 System.out.print(" ");
