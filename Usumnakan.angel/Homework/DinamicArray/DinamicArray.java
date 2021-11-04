@@ -9,7 +9,7 @@ public class DinamicArray {
     //ստուգել եթե մասիվի մեջ տեղ չկա -> կանչել extend() մեթոդ
     //և ավելացնենք
     public void add(int value) {
-        if (array[array.length - 1] != 0) {
+        if (size/array.length==1) {
             extend();
         } else {
             array[size++] = value;
@@ -26,7 +26,6 @@ public class DinamicArray {
             result[i] = array[i];
         }
         array = result;
-
     }
 
     //եթե տրված ինդեքսը մեր ունեցած մասիվի ինդեքսի սահմաններում է
