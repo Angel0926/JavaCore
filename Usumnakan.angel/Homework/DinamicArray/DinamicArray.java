@@ -9,11 +9,10 @@ public class DinamicArray {
     //ստուգել եթե մասիվի մեջ տեղ չկա -> կանչել extend() մեթոդ
     //և ավելացնենք
     public void add(int value) {
-        if (size/array.length==1) {
+        if (array.length==size) {
             extend();
-        } else {
-            array[size++] = value;
         }
+            array[size++] = value;
     }
 
 

@@ -2,7 +2,7 @@ package Praktik;
 
 import java.util.Scanner;
 
-public class AsTest {
+public class AClassTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int a= scanner.nextInt();
