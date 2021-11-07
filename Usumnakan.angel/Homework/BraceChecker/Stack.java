@@ -1,8 +1,8 @@
 package Homework.BraceChecker;
-
 public class Stack {
     private static int size;
     private static char[] array=new char[10];
+    public String pop;
     private char value;
 
     public Stack() {
@@ -11,13 +11,12 @@ public class Stack {
 
     public static void push(char value) {
         if (size == array.length) {
-            System.out.println("stack-ի ավարտ");
         } else {
             array[size = size + 1] = value;
         }
     }
 
-    public char pop() {
+    public  char pop() {
         if (size < 0) {
             System.out.println("stack-ը դատարկ է");
             return 0;
@@ -25,4 +24,9 @@ public class Stack {
             return array[size++];
         }
     }
+
+
+
 }
+
+

@@ -1,11 +1,13 @@
 package Homework.BraceChecker;
 
+import java.util.Scanner;
 
 public class BracecheckerTest {
     public static void main(String[] args) {
-        String block;
-        String Text = "Hello (from) {Java]";
-        BraceChecker braceChecker = new BraceChecker(Text);
+
+        Scanner sc = new Scanner(System.in);
+        String text = sc.next();
+        BraceChecker braceChecker = new BraceChecker(text);
         braceChecker.check();
     }
 }

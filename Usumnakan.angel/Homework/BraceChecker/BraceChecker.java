@@ -13,38 +13,38 @@ public class BraceChecker {
 
     //Սա հիմնական մեթոդն է, որի մեջ գրելու ենք ամբողջ լոգիկան, աշխատելու ենք թե stack-ի
 // հետ , թե վերևի text-ի
-    public String check() {
+    public void check() {
         Stack stack = new Stack();
+        int index = -1;
         for (int i = 0; i < text.length(); i++) {
-            String name = text;
-            char c = name.charAt(i);
-            if (c == '(' || c == '{' || c == '['){
-                stack.push(c);}
-            else if (c == ']') {
-                if (stack.pop() == '[')
-                    System.out.println("open [ and close ]");
-                else if (stack.pop() == '{')
-                    System.out.println("{ but close ]");
-                else if (stack.pop() == '(')
-                    System.out.println("open ( but close ]");
-            } else if (c == '}') {
-                if (stack.pop() == '{')
-                    System.out.println(" { and close }");
-                else if (stack.pop() == '[')
-                    System.out.println("open [ but close }");
-                else if (stack.pop() == '(')
-                    System.out.println("open ( but close }");
-            } else if (c == ')') {
-                if (stack.pop() == '(')
-                    System.out.println("open ( and  close )");
-                else if (stack.pop() == '{')
-                    System.out.println("open { but close )");
-                else if (stack.pop() == '[')
-                    System.out.println("open [ but close )");
+            char c = text.charAt(i);
+            index++;
+            if (c == '{' || c == '(' || c == '[') {
+                stack.push(c);
+            } else if (c == '}' || c == ')' || c == ']') {
+                char d = stack.pop();
+                switch (c) {
+                    case '}':
+                        if (d == '[')
+                            System.out.println("Error: opened [ and closed } at index" + index);
+                        if (d == '(')
+                            System.out.println("Error: opened ( and closed } at index " + index);
+                        break;
+                    case ']':
+                        if (d == '{')
+                            System.out.println("Error: opened { and closed ] at index " +index);
+                        if (d == '(')
+                            System.out.println("Error: opened ( and closed ] at index " + index);
+                        break;
+                    case ')':
+                        if (d == '{')
+                            System.out.println("Error: opened { and closed ) at index " + index);
+                        if (d == '[')
+                            System.out.println("Error: opened [ and closed ) at index " + index);
+                        break;
+                }
             }
         }
-        return null;
     }
-
-
 }
+
