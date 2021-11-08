@@ -22,24 +22,24 @@ public class BraceChecker {
             if (c == '{' || c == '(' || c == '[') {
                 stack.push(c);
             } else if (c == '}' || c == ')' || c == ']') {
-                char d = stack.pop();
+                char cpop = stack.pop();
                 switch (c) {
                     case '}':
-                        if (d == '[')
+                        if (cpop == '[')
                             System.out.println("Error: opened [ and closed } at index" + index);
-                        if (d == '(')
+                        if (cpop == '(')
                             System.out.println("Error: opened ( and closed } at index " + index);
                         break;
                     case ']':
-                        if (d == '{')
+                        if (cpop == '{')
                             System.out.println("Error: opened { and closed ] at index " + index);
-                        if (d == '(')
+                        if (cpop == '(')
                             System.out.println("Error: opened ( and closed ] at index " + index);
                         break;
                     case ')':
-                        if (d == '{')
+                        if (cpop == '{')
                             System.out.println("Error: opened { and closed ) at index " + index);
-                        if (d == '[')
+                        if (cpop == '[')
                             System.out.println("Error: opened [ and closed ) at index " + index);
                         break;
                 }
