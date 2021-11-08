@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class BracecheckerTest {
     public static void main(String[] args) {
 
-        BraceChecker braceChecker = new BraceChecker("Hello {from] {Java}");
+        Scanner sc = new Scanner(System.in);
+        String text = sc.next();
+        BraceChecker braceChecker = new BraceChecker(text);
         braceChecker.check();
     }
 }
