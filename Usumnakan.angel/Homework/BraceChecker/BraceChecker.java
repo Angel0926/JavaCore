@@ -32,7 +32,7 @@ public class BraceChecker {
                         break;
                     case ']':
                         if (d == '{')
-                            System.out.println("Error: opened { and closed ] at index " +index);
+                            System.out.println("Error: opened { and closed ] at index " + index);
                         if (d == '(')
                             System.out.println("Error: opened ( and closed ] at index " + index);
                         break;
