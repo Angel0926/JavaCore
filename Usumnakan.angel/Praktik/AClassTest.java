@@ -10,8 +10,6 @@ public class AClassTest {
         int c= a+b;
         System.out.println(c);
 
-
-
     }
 
 }
