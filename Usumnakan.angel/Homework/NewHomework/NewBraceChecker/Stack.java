@@ -1,7 +1,7 @@
 package Homework.NewHomework.NewBraceChecker;
 public class Stack {
     private static int size;
-    private static char[] array = new char[10];
+    private static char[] array = new char[40];
     public String pop;
     private char value;
 
@@ -16,12 +16,12 @@ public class Stack {
         }
     }
 
-    public char pop() {
+    public static char pop() {
         if (size < 0) {
             System.out.println("stack-ը դատարկ է");
             return 0;
         } else {
-            return array[size++];
+            return array[size--];
         }
     }
 }
