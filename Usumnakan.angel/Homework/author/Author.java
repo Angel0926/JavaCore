@@ -2,11 +2,13 @@ package Homework.author;
 
 public class Author {
 
+
         private String name;
         private String surname;
         private int age;
         private String email;
         private String gender;
+
 
         public Author(String name, String surname, int age, String email, String gender) {
             this.name = name;

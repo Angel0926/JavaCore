@@ -1,7 +1,7 @@
 package Homework.author;
 
 
-public class AuthorStorage {
+public class AuthorStorage<isFound> {
     private Author[] authors = new Author[10];
     private int size = 0;
 
@@ -10,8 +10,17 @@ public class AuthorStorage {
         if (size == authors.length) {
             extend();
         }
+        boolean isFound =false;
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getEmail().equals(author.getEmail())){
+           isFound=true;
+            break;}
+        }
+        if(isFound){
+        System.err.println("Invalid mail. Author with this email already exist");
+    }else {
         authors[size++] = author;
-    }
+    }}
 
     private void extend() {
         Author[] tmp = new Author[authors.length + 10];
@@ -45,5 +54,13 @@ public class AuthorStorage {
             }
         }
 
+    }
+
+    public Author getByEmail(String email) {
+        for (int i = 0; i <size; i++) {
+            if(authors[i].getEmail().equals(email)){
+                return authors[i];
+            }
+        }return null;
     }
 }

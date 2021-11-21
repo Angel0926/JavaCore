@@ -7,7 +7,7 @@ public class AuthorTest {
 
     private static Scanner scanner = new Scanner(System.in);
     private static AuthorStorage authorStorage = new AuthorStorage();
-    private static BookStorage bookStorage=new BookStorage();
+    private static BookStorage bookStorage = new BookStorage();
 
     private static final String EXIT = "0";
     private static final String ADD_AUTHOR = "1";
@@ -23,8 +23,9 @@ public class AuthorTest {
 
         authorStorage.add(new Author("poxos", "poxosyan", 22, "poxos@mail.com", "male"));
         authorStorage.add(new Author("petros", "petrosyan", 33, "petros@mail.com", "male"));
-        authorStorage.add(new Author("martiros", "martirosyan", 44, "martiros@mail.com", "male"));
-        bookStorage.add(new Book("Kyanq@ partqov","Arcak", 1500 ,30 ));
+        authorStorage.add(new Author("Erix", "remark", 44, "martiros@mail.com", "male"));
+
+
         boolean isRun = true;
         while (isRun) {
             printCommands();
@@ -67,9 +68,10 @@ public class AuthorTest {
         System.out.println("Please input " + SEARCH_AUTHOR + " for SEARCH_AUTHOR");
         System.out.println("Please input " + SEARCH_AUTHOR_BY_AGE + " for SEARCH_AUTHOR_BY_AGE");
         System.out.println("Please input " + PRINT_AUTHORS + " for PRINT_AUTHORS");
-        System.out.println("Please input " + ADD_BOOK  + " for ADD_BOOK");
-        System.out.println("Please input " + PRINT_BOOKS  + " for PRINT_BOOKS");
-        System.out.println("Please input " + SEARCH_BOOKS_BY_TITLE  + " for SEARCH_BOOKS_BY_TITLE");
+        System.out.println("Please input " + ADD_BOOK + " for ADD_BOOK");
+        System.out.println("Please input " + PRINT_BOOKS + " for PRINT_BOOKS");
+        System.out.println("Please input " + SEARCH_BOOKS_BY_TITLE + " for SEARCH_BOOKS_BY_TITLE");
+
     }
 
     private static void searchAuthorByAge() {
@@ -85,11 +87,13 @@ public class AuthorTest {
         String keyword = scanner.nextLine();
         authorStorage.searchAuthor(keyword);
     }
+
     private static void searchBook() {
         System.out.println("Please input keyword");
         String keyword = scanner.nextLine();
         bookStorage.searchBook(keyword);
     }
+
     private static void addAuthor() {
         System.out.println("please input author's name");
         String name = scanner.nextLine();
@@ -110,22 +114,34 @@ public class AuthorTest {
         authorStorage.add(author);
         System.out.println("Thank you! Author was added");
     }
+
     private static void addBook() {
-        System.out.println("please input book's title");
-        String title = scanner.nextLine();
+        System.out.println("please choose author's email");
+        System.out.println("----------------");
+        authorStorage.print();
+        System.out.println("----------------");
+        String email = scanner.nextLine();
+        Author author = authorStorage.getByEmail(email);
+        if (author != null) {
+            System.out.println("please input book's title");
+            String title = scanner.nextLine();
 
-        System.out.println("please input book's description");
-        String description = scanner.nextLine();
+            System.out.println("please input book's description");
+            String description = scanner.nextLine();
 
-        System.out.println("please input book's price");
-        double price = Integer.parseInt(scanner.nextLine());
+            System.out.println("please input book's price");
+            double price = Integer.parseInt(scanner.nextLine());
 
-        System.out.println("please input book's count");
-        int count  = Integer.parseInt(scanner.nextLine());
-
-        Book book = new Book(title,description, price, count );
-       bookStorage.add(book);
-        System.out.println("Thank you! Book was added");
+            System.out.println("please input book's count");
+            int count = Integer.parseInt(scanner.nextLine());
+            Book book = new Book(title, description, price, count, author);
+            bookStorage.add(book);
+            System.out.println("Thank you! Book was added");
+        } else {
+            System.out.println("invalid email! please try again");
+            addBook();
+        }
     }
-
 }
+
+
