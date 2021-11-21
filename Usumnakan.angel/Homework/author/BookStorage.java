@@ -1,6 +1,6 @@
 package Homework.author;
 
-public class BookStorage extends AuthorStorage {
+public class BookStorage {
     private Book[] books = new Book[10];
     private int size = 0;
 
@@ -33,22 +33,6 @@ public class BookStorage extends AuthorStorage {
             }
         }
     }
-
-
-
 }
-/*
-    public void searchAuthorByAge(int minAge, int maxAge) {
-        for (int i = 0; i < size; i++) {
-            if (authors[i].getAge() >= minAge &&
-                    authors[i].getAge() <= maxAge) {
-
-                System.out.println(authors[i]);
-            }
-        }
-
-    }
-}*/
-
 
 

@@ -10,17 +10,19 @@ public class AuthorStorage<isFound> {
         if (size == authors.length) {
             extend();
         }
-        boolean isFound =false;
+        boolean isFound = false;
         for (int i = 0; i < size; i++) {
-            if (authors[i].getEmail().equals(author.getEmail())){
-           isFound=true;
-            break;}
+            if (authors[i].getEmail().equals(author.getEmail())) {
+                isFound = true;
+                break;
+            }
         }
-        if(isFound){
-        System.err.println("Invalid mail. Author with this email already exist");
-    }else {
-        authors[size++] = author;
-    }}
+        if (isFound) {
+            System.err.println("Invalid mail. Author with this email already exist");
+        } else {
+            authors[size++] = author;
+        }
+    }
 
     private void extend() {
         Author[] tmp = new Author[authors.length + 10];
@@ -57,10 +59,11 @@ public class AuthorStorage<isFound> {
     }
 
     public Author getByEmail(String email) {
-        for (int i = 0; i <size; i++) {
-            if(authors[i].getEmail().equals(email)){
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getEmail().equals(email)) {
                 return authors[i];
             }
-        }return null;
+        }
+        return null;
     }
 }
