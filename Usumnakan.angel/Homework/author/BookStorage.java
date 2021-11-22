@@ -26,13 +26,30 @@ public class BookStorage {
         }
     }
 
-    public void searchBook(String keyword) {
+    public Book searchByTitle(String keyword) {
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().contains(keyword)) {
+                return  books[i];
+            }
+        }return null;
+    }
+    public void searchBookByAuthor(String keyword) {
+        for (int i = 0; i < size; i++) {
+            if (books[i].getAuthor().getEmail().equals(keyword)) {
                 System.out.println(books[i]);
             }
         }
     }
+    public void countBookByAuthor(String keyword) {
+        int count=0;
+        for (int i = 0; i < size; i++) {
+            if (books[i].getAuthor().getEmail().equals(keyword)) {
+               count++;
+            }
+
+        }System.out.println(count);
+    }
+
 }
 
 

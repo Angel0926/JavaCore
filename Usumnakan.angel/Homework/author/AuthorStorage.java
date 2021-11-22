@@ -7,7 +7,7 @@ public class AuthorStorage<isFound> {
 
 
     public void add(Author author) {
-        if (size == authors.length) {
+        if (authors.length == size) {
             extend();
         }
         boolean isFound = false;
@@ -38,7 +38,7 @@ public class AuthorStorage<isFound> {
         }
     }
 
-    public void searchAuthor(String keyword) {
+    public void searchByName(String keyword) {
         for (int i = 0; i < size; i++) {
             if (authors[i].getName().contains(keyword) ||
                     authors[i].getSurname().contains(keyword)) {

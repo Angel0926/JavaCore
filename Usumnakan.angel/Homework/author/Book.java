@@ -1,5 +1,7 @@
 package Homework.author;
 
+import java.nio.charset.Charset;
+
 public class Book {
     private String title;
     private String description;
@@ -16,7 +18,9 @@ public class Book {
         this.author = author;
 
     }
+public Book(){
 
+    }
 
     public String getTitle() {
         return title;
@@ -67,4 +71,6 @@ public class Book {
                 ", count=" + count + ", author=" + author +
                 '}';
     }
+
+
 }
