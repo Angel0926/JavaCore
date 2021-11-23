@@ -1,6 +1,4 @@
-package Homework.author;
-
-import java.nio.charset.Charset;
+package Homework.PracticeHomework.Author;
 
 public class Book {
     private String title;
@@ -9,16 +7,15 @@ public class Book {
     private int count;
     private Author author;
 
-
     public Book(String title, String description, double price, int count, Author author) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.count = count;
         this.author = author;
-
     }
-public Book(String samvel, String vep, int price, int count, String simon){
+
+    public Book() {
 
     }
 
@@ -68,9 +65,10 @@ public Book(String samvel, String vep, int price, int count, String simon){
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", count=" + count + ", author=" + author +
+                ", count=" + count +
+                ", author=" + author +
+
                 '}';
     }
-
-
 }
+

@@ -29,10 +29,12 @@ public class BookStorage {
     public Book searchByTitle(String keyword) {
         for (int i = 0; i < size; i++) {
             if (books[i].getTitle().contains(keyword)) {
-                return  books[i];
+                return books[i];
             }
-        }return null;
+        }
+        return null;
     }
+
     public void searchBookByAuthor(String keyword) {
         for (int i = 0; i < size; i++) {
             if (books[i].getAuthor().getEmail().equals(keyword)) {
@@ -40,16 +42,37 @@ public class BookStorage {
             }
         }
     }
-    public void countBookByAuthor(String keyword) {
-        int count=0;
+
+    public int countBookByAuthor(String keyword) {
+        int count = 0;
         for (int i = 0; i < size; i++) {
             if (books[i].getAuthor().getEmail().equals(keyword)) {
-               count++;
+                count++;
             }
-
-        }System.out.println(count);
+        }
+        return count;
     }
 
+    //delete(int index)
+//for (int i = index + 1; i < size; i++) {
+//            books[i - 1] = books[i];
+//        }
+//        size--;
+    public void deletebook(String title) {
+        for (int i = 0; i < size; i++) {
+            if (books[i].getTitle().equals(title)) {
+                delete(i);
+                System.out.println("Book has been deleted");
+            }
+        }
+    }
+
+    private void delete(int index) {
+        for (int i = index + 1; i < size; i++) {
+            books[i - 1] = books[i];
+        }
+        size--;
+    }
 }
 
 
