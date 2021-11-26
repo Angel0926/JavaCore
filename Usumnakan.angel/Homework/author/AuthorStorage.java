@@ -1,10 +1,10 @@
+
 package Homework.author;
 
 
 public class AuthorStorage<isFound> {
     private Author[] authors = new Author[10];
     private int size = 0;
-
 
     public void add(Author author) {
         if (authors.length == size) {
@@ -26,9 +26,7 @@ public class AuthorStorage<isFound> {
 
     private void extend() {
         Author[] tmp = new Author[authors.length + 10];
-
         System.arraycopy(authors, 0, tmp, 0, authors.length);
-
         authors = tmp;
     }
 
@@ -51,11 +49,9 @@ public class AuthorStorage<isFound> {
         for (int i = 0; i < size; i++) {
             if (authors[i].getAge() >= minAge &&
                     authors[i].getAge() <= maxAge) {
-
                 System.out.println(authors[i]);
             }
         }
-
     }
 
     public Author getByEmail(String email) {
@@ -66,4 +62,22 @@ public class AuthorStorage<isFound> {
         }
         return null;
     }
-}
+
+    public void deleteAuthor(String email) {
+        for (int i = 0; i < size; i++) {
+            if (authors[i].getEmail().contains(email)) {
+                deleteA(i);
+                System.out.println("Author has been deleted");
+            }else System.err.println("invalid author");
+        }
+    }
+
+        private void deleteA(int index){
+            for (int i = index + 1; i < size; i++) {
+                authors[i - 1] = authors[i];
+            }
+            size--;
+        }
+    }
+
+
