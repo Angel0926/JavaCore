@@ -1,6 +1,5 @@
-package Homework.author;
+package Praktik.AuthorBook;
 
-import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class AuthorBookTest {
@@ -304,5 +303,3 @@ public class AuthorBookTest {
         return author;
     }
 }
-
-

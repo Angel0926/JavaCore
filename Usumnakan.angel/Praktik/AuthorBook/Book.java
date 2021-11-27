@@ -1,6 +1,5 @@
-package Homework.author;
+package Praktik.AuthorBook;
 
-import java.nio.charset.Charset;
 
 public class Book {
     private String title;
@@ -18,7 +17,7 @@ public class Book {
         this.author = author;
 
     }
-public Book(String samvel, String vep, int price, int count, String simon){
+    public Book(String samvel, String vep, int price, int count, String simon){
 
     }
 

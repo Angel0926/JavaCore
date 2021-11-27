@@ -1,4 +1,4 @@
-package Homework.author;
+package Praktik.AuthorBook;
 
 
 public class BookStorage {

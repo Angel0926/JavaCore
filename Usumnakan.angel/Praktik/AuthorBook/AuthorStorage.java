@@ -1,6 +1,5 @@
 
-package Homework.author;
-
+package Praktik.AuthorBook;
 
 public class AuthorStorage<isFound> {
     private Author[] authors = new Author[10];
@@ -72,12 +71,13 @@ public class AuthorStorage<isFound> {
         }
     }
 
-        private void deleteA(int index){
-            for (int i = index + 1; i < size; i++) {
-                authors[i - 1] = authors[i];
-            }
-            size--;
+    private void deleteA(int index){
+        for (int i = index + 1; i < size; i++) {
+            authors[i - 1] = authors[i];
         }
+        size--;
     }
+}
+
 
 
