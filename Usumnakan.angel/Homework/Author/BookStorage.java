@@ -23,14 +23,14 @@ public class BookStorage {
         }
     }
 
-   /* public Book getBySerialId(String serialId) {
+    public Book getBySerialId(String serialId) {
         for (int i = 0; i < size; i++) {
-            if (books[i].getSerialId().equals(serialId)) {
+           if (books[i].equals(serialId)) {
                 return books[i];
             }
         }
-        return null;
-    }*/
+   return null;
+    }
 
     public void searchByTitle(String keyword) {
         for (int i = 0; i < size; i++) {

@@ -17,7 +17,7 @@ public class Author {
         this.gender = gender;
     }
 
-    public Author() {
+    public Author(String lessonDatum, int duration, String datum, int price) {
     }
 
     public String getName() {

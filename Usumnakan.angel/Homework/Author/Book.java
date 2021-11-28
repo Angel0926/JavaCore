@@ -60,6 +60,11 @@ public Book(String samvel, String vep, int price, int count, String simon){
         this.author = author;
     }
 
+    public Author book() {
+        return author;
+    }
+
+
     @Override
     public String toString() {
         return "Book{" +
