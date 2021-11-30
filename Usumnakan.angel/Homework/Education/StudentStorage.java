@@ -4,11 +4,12 @@ public class StudentStorage {
     private Student[] students = new Student[10];
     private int size = 0;
 
-    public void add(Student student) {
+    public Lesson[] add(Student student) {
         if (size == students.length) {
             extend();
         }
         students[size++] = student;
+        return new Lesson[0];
     }
 
     private void extend() {
@@ -35,7 +36,7 @@ public class StudentStorage {
 
     public void printStudentsByLesson(String lesson) {
         for (int i = 0; i < size; i++) {
-            if (students[i].getLesson().getName().equals(lesson)) {
+            if (students[i].getLessons().equals(lesson)) {
                 System.out.println(students[i]);
             }
         }

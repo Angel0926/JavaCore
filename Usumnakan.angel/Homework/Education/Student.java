@@ -1,5 +1,7 @@
 package Homework.Education;
 
+import java.util.Arrays;
+
 public class Student {
 
     private String name;
@@ -7,15 +9,15 @@ public class Student {
     private int age;
     private String email;
     private String phone;
-    private Lesson lesson;
+    private Lesson[] lessons;
 
-    public Student(String name, String surname, int age, String email, String phone, Lesson lesson) {
+    public Student(String name, String surname, int age, String email, String phone, Lesson[] lessons) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.email = email;
         this.phone = phone;
-        this.lesson = lesson;
+        this.lessons = lessons;
     }
 
     public String getName() {
@@ -58,12 +60,12 @@ public class Student {
         this.phone = phone;
     }
 
-    public Lesson getLesson() {
-        return lesson;
+    public Lesson[] getLessons() {
+        return lessons;
     }
 
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
+    public void setLessons(Lesson[] lessons) {
+        this.lessons = lessons;
     }
 
     @Override
@@ -74,7 +76,7 @@ public class Student {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", lesson=" + lesson +
+                ", lessons=" + Arrays.toString(lessons) +
                 '}';
     }
 }

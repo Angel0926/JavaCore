@@ -29,7 +29,9 @@ public class LessonStudentTest {
 
     public static void main(String[] args) {
         lessonStorage.add(new Lesson("english", 2, "poxos", 5200));
-        studentStorage.add(new Student("ani", "karapetyan", 25, "ani@mail.com", "5-25-65", new Lesson("english", 2, "poxos", 5200)));
+        //  studentStorage.add(new Student("ani", "karapetyan", 25,
+        //        "ani@mail.com", "5-25-65",lessonStorage.add(new Lesson("english",
+        //      2, "poxos", 5200))));
 
         boolean isRun = true;
         while (isRun) {
@@ -101,37 +103,32 @@ public class LessonStudentTest {
     }
 
     private static void addStudent() {
-        System.out.println("please input lesson's name");
+        System.out.println("please input  student's name");
         String name = scanner.nextLine();
-        Lesson lesson = lessonStorage.getByName(name);
-        if (lesson != null) {
-            System.out.println("please choose students email");
-            String email = scanner.nextLine();
-            if (studentStorage.getByEmail(email) != null) {
-                System.err.println("Student  is exists");
-            } else {
-                System.out.println("please input new  student's name");
-                name = scanner.nextLine();
-                System.out.println("please input student's surname");
-                String surname = scanner.nextLine();
-                System.out.println("please input student's age");
-                int age = Integer.parseInt(scanner.nextLine());
-                System.out.println("please input student's email");
-                email = scanner.nextLine();
-                System.out.println("please input student's phone");
-                String phone = scanner.nextLine();
-                System.out.println("please input lesson's name");
-                Student student = new Student(name, surname, age, email, phone, lesson);
-                studentStorage.add(student);
-                System.out.println("Thank you, Student was added");
+        System.out.println("please input student's surname");
+        String surname = scanner.nextLine();
+        System.out.println("please input student's age");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("please input student's email");
+        String email = scanner.nextLine();
+        System.out.println("please input student's phone");
+        String phone = scanner.nextLine();
+        System.out.println("please input lesson's name");
+        String lessonName = scanner.nextLine();
+        String[] lessonNames = lessonName.split(",");
+        Lesson[] lesson = new Lesson[lessonNames.length];
+        for (int i = 0; i < lessonNames.length; i++) {
+            if (lessonStorage.getByName(lessonNames[i]) != null) {
+                lesson[i] = lessonStorage.getByName(lessonNames[i]);
             }
-        } else {
-            System.out.println("invalid lesson! please try new lesson ");
-            addStudent();
         }
+        Student student = new Student(name, surname, age, email, phone, lesson);
+        studentStorage.add(student);
+        System.out.println("Thank you, Student was added");
+
     }
 
-    private static void addLesson() {
+    private static Lesson addLesson() {
         System.out.println("please input lessons's name,duration,lecturer's name,price");
         String lessonDataStr = scanner.nextLine();
         String[] lessonData = lessonDataStr.split(",");
@@ -147,5 +144,6 @@ public class LessonStudentTest {
             }
         }
 
+        return null;
     }
 }
