@@ -5,12 +5,11 @@ public class LessonStorage {
     private Lesson[] lessons = new Lesson[10];
     private int size;
 
-    public Lesson[] add(Lesson lesson) {
+    public void add(Lesson lesson) {
         if (lessons.length == size) {
             extend();
         }
         lessons[size++] = lesson;
-        return new Lesson[0];
     }
 
     private void extend() {

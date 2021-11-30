@@ -16,6 +16,7 @@ public class LessonStudentTest {
     private static final String DELETE_STUDENT_BY_EMAIL = "7";
 
 
+
     private static void printCommands() {
         System.out.println("please input " + EXIT + " for EXIT");
         System.out.println("please input " + ADD_LESSON + " FOR ADD_LESSON");
@@ -29,9 +30,7 @@ public class LessonStudentTest {
 
     public static void main(String[] args) {
         lessonStorage.add(new Lesson("english", 2, "poxos", 5200));
-        //  studentStorage.add(new Student("ani", "karapetyan", 25,
-        //        "ani@mail.com", "5-25-65",lessonStorage.add(new Lesson("english",
-        //      2, "poxos", 5200))));
+
 
         boolean isRun = true;
         while (isRun) {
@@ -68,6 +67,7 @@ public class LessonStudentTest {
             }
 
         }
+
     }
 
     private static void deleteStudentByEmail() {
@@ -94,8 +94,8 @@ public class LessonStudentTest {
 
     private static void printStudentsByLesson() {
         System.out.println("please input lesson's name");
-        String lesson = scanner.nextLine();
-        studentStorage.printStudentsByLesson(lesson);
+        String lessonName = scanner.nextLine();
+        studentStorage.printStudentsByLesson(lessonName);
     }
 
     private static void printStudents() {
@@ -116,7 +116,12 @@ public class LessonStudentTest {
         System.out.println("please input lesson's name");
         String lessonName = scanner.nextLine();
         String[] lessonNames = lessonName.split(",");
-        Lesson[] lesson = new Lesson[lessonNames.length];
+        int size=0;
+        for (int i = 0; i < lessonNames.length; i++) {
+            if(lessonStorage.getByName(lessonNames[i])!=null)
+                size++;
+        }
+        Lesson[] lesson = new Lesson[size];
         for (int i = 0; i < lessonNames.length; i++) {
             if (lessonStorage.getByName(lessonNames[i]) != null) {
                 lesson[i] = lessonStorage.getByName(lessonNames[i]);
@@ -143,7 +148,7 @@ public class LessonStudentTest {
                 System.out.println("Thank you, lesson was added");
             }
         }
-
+        System.out.println("Invalid lesson");
         return null;
     }
 }

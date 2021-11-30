@@ -1,15 +1,16 @@
 package Homework.Education;
 
+import java.util.Arrays;
+
 public class StudentStorage {
     private Student[] students = new Student[10];
-    private int size = 0;
+    private int size;
 
-    public Lesson[] add(Student student) {
+    public void add(Student student) {
         if (size == students.length) {
             extend();
         }
         students[size++] = student;
-        return new Lesson[0];
     }
 
     private void extend() {
@@ -34,9 +35,9 @@ public class StudentStorage {
     }
 
 
-    public void printStudentsByLesson(String lesson) {
+    public void printStudentsByLesson(String lessonName) {
         for (int i = 0; i < size; i++) {
-            if (students[i].getLessons().equals(lesson)) {
+            if (Arrays.toString(students[i].getLessons()).contains(lessonName)) {
                 System.out.println(students[i]);
             }
         }
