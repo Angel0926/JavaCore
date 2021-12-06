@@ -1,5 +1,7 @@
 package Homework.education;
 
+import Homework.education.commands.LessonStudentCommandsforadmin;
+import Homework.education.commands.LoginRegisterCommands;
 import Homework.education.model.Lesson;
 import Homework.education.model.Student;
 import Homework.education.model.User;
@@ -49,7 +51,6 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
 
         boolean isRun = true;
         while (isRun) {
-     //      LessonStudentCommandsforadmin.printCommands();
             String command = scanner.nextLine();
             switch (command) {
                 case LessonStudentCommandsforadmin.EXIT:

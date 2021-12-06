@@ -1,4 +1,4 @@
-package Homework.education;
+package Homework.education.commands;
 
 public interface LessonStudentCommandsforadmin {
       String EXIT = "0";
