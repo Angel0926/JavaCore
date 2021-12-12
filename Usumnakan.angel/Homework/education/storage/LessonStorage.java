@@ -26,7 +26,7 @@ public class LessonStorage {
         }
     }
 
-    public Lesson getByName(String name) {
+    public  Lesson getByName(String name) {
         for (int i = 0; i < size; i++) {
             if (lessons[i].getName().equals(name)) {
                 return lessons[i];

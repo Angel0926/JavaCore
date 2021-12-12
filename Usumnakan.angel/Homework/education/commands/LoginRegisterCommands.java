@@ -11,7 +11,7 @@ public interface LoginRegisterCommands {
     static void printCommands() {
         System.out.println("please input " + LOGIN + " FOR LOGIN");
         System.out.println("please input " + REGISTER + " FOR REGISTER");
-        System.out.println("please input " + EXIT + " for EXIT");
+        System.out.println("please input " + EXIT + " for LOGOUT");
         System.out.println("please input " + PRINTUSER + " for PRINTUSER");
 
 

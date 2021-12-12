@@ -1,7 +1,8 @@
 package Homework.education;
 
-import Homework.education.commands.LessonStudentCommandsforadmin;
+import Homework.education.commands.LessonStudentCommandsforadminoruser;
 import Homework.education.commands.LoginRegisterCommands;
+import Homework.education.exception.UserNotFoundException;
 import Homework.education.model.Lesson;
 import Homework.education.model.Student;
 import Homework.education.model.User;
@@ -14,15 +15,14 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.Scanner;
 
-public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRegisterCommands {
+public class LessonStudentTest implements LessonStudentCommandsforadminoruser, LoginRegisterCommands {
     static Scanner scanner = new Scanner(System.in);
     static LessonStorage lessonStorage = new LessonStorage();
     static StudentStorage studentStorage = new StudentStorage();
     static UserStorage userStorage = new UserStorage();
 
 
-
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args) {
         lessonStorage.add(new Lesson("english", 2, "poxos", 5200));
         lessonStorage.add(new Lesson("french", 3, "dalios", 200));
         userStorage.add(new User("ani", "ananyan", "ani@mail.com", "aniani1234", "user"));
@@ -39,7 +39,7 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
                     register();
                     break;
                 case LoginRegisterCommands.EXIT:
-                    isRun1 = false;
+                    System.exit(0);
                     break;
                 case PRINTUSER:
                     printuser();
@@ -52,14 +52,14 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
     }
 
 
-    private static void admin() throws ParseException {
+    private static void admin() {
         boolean isRun = true;
-        LessonStudentCommandsforadmin.printCommandsAdmin();
+        LessonStudentCommandsforadminoruser.printCommandsAdmin();
         while (isRun) {
             String command = scanner.nextLine();
             switch (command) {
-                case LessonStudentCommandsforadmin.EXIT:
-                    isRun = false;
+                case LessonStudentCommandsforadminoruser.EXIT:
+                    System.exit(0);
                     break;
                 case ADD_LESSON:
                     addLesson();
@@ -82,6 +82,9 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
                 case DELETE_STUDENT_BY_EMAIL:
                     deleteStudentByEmail();
                     break;
+                case LOGOUT:
+                    isRun = false;
+                    break;
                 default:
                     System.out.println("Invalid command!");
                     break;
@@ -89,14 +92,14 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
         }
     }
 
-    private static void user () throws ParseException {
+    private static void user() {
         boolean isRun = true;
-        LessonStudentCommandsforadmin.printCommandsUser();
+        LessonStudentCommandsforadminoruser.printCommandsUser();
         while (isRun) {
             String command = scanner.nextLine();
             switch (command) {
-                case LessonStudentCommandsforadmin.EXIT:
-                    isRun = false;
+                case LessonStudentCommandsforadminoruser.EXIT:
+                    System.exit(0);
                     break;
                 case ADD_LESSON:
                     addLesson();
@@ -113,6 +116,9 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
                 case PRINT_LESSONS:
                     printLessons();
                     break;
+                case LOGOUT:
+                    isRun = false;
+                    break;
                 default:
                     System.out.println("Invalid command!");
                     break;
@@ -126,44 +132,56 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
     }
 
     private static void register() {
-        System.out.println("please input user's name");
-        String name = scanner.nextLine();
-        System.out.println("please input user's surname");
-        String surname = scanner.nextLine();
-        System.out.println("please input user's email");
+        System.out.println("please input email");
         String email = scanner.nextLine();
-        System.out.println("please input user's password");
-        String password = scanner.nextLine();
-        System.out.println("please input user's type");
-        String type = scanner.nextLine();
-        if (type.equals("user") || type.equals("admin")) {
-            User user = new User(name, surname, email, password, type);
-            userStorage.add(user);
-            System.out.println("Thank you, user was added");
-        } else {
-            System.out.println("invalid type");
+        User byEmail = null;
+        try {
+            byEmail = userStorage.getByEmail(email);
+            if (byEmail == null) {
+                System.out.println("please input user's name");
+                String name = scanner.nextLine();
+                System.out.println("please input user's surname");
+                String surname = scanner.nextLine();
+                System.out.println("please input user's password");
+                String password = scanner.nextLine();
+                System.out.println("please input user's type(admin, user");
+                String type = scanner.nextLine();
+                if (type.equalsIgnoreCase("user") || type.equalsIgnoreCase("admin")) {
+                    User user = new User(name, surname, email, password, type.toUpperCase());
+                    userStorage.add(user);
+                    System.out.println("Thank you, user was registered");
+                } else {
+                    System.out.println("invalid type");
+                }
+            }
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    private static void login() throws ParseException {
+
+    private static void login() {
         System.out.println("Please input email");
         String email = scanner.nextLine();
-        System.out.println("Please input password");
-        String password = scanner.nextLine();
-        User user = userStorage.getByEmail(email);
-        if (user != null && user.getPassword().equals(password)) {
-            if (user.getType().equals("user")) {
-                user();
+        User byEmail = null;
+        try {
+            byEmail = userStorage.getByEmail(email);
+            if (byEmail != null) {
+                System.out.println("Please input password");
+                String password = scanner.nextLine();
+                if (byEmail.getPassword().equals(password)) {
+                    if (byEmail.getType().equalsIgnoreCase("ADMIN")) {
+                        admin();
+                    }
+                }
+                if (byEmail.getType().equalsIgnoreCase("user")) {
+                    user();
+                }
             }
-            if (user.getType().equals("admin")) {
-                admin();
-            }
-        } else {
-            System.err.println("Sorry! The user from this email and password don't exist");
+        } catch (UserNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
-
-
 
 
     static void deleteStudentByEmail() {
@@ -191,14 +209,16 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
     static void printStudentsByLesson() {
         System.out.println("please input lesson's name");
         String lessonName = scanner.nextLine();
-        studentStorage.printStudentsByLesson(lessonName);
+        Lesson lesson = lessonStorage.getByName(lessonName);
+        studentStorage.printStudentsByLesson(lesson);
     }
+
 
     static void printStudents() {
         studentStorage.print();
     }
 
-    static void addStudent() throws ParseException {
+    static void addStudent() {
         System.out.println("please input  student's name");
         String name = scanner.nextLine();
         System.out.println("please input student's surname");
@@ -211,7 +231,12 @@ public class LessonStudentTest implements LessonStudentCommandsforadmin, LoginRe
         String phone = scanner.nextLine();
         System.out.println("please input registered date //dd/MM/yyyy//");
         String date = scanner.nextLine();
-        Date registeredDate = DateUtil.stringToDate(date);
+        Date registeredDate = null;
+        try {
+            registeredDate = DateUtil.stringToDate(date);
+        } catch (ParseException e) {
+            System.out.println("please input registered date //dd/MM/yyyy//");
+        }
         System.out.println("please input lesson's name");
         String lessonName = scanner.nextLine();
         String[] lessonNames = lessonName.split(",");
