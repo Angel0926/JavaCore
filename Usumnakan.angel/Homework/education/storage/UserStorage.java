@@ -33,7 +33,9 @@ public class UserStorage {
             }
         }
   throw new UserNotFoundException("User does not exists. EMAIL: " + email );
+
     }
+
 
    /* public User getByEmailandPassword(String email, String password) {
         for (int i = 0; i < size; i++) {
