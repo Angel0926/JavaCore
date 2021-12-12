@@ -1,5 +1,7 @@
 package Homework.education.model;
 
+import java.util.Objects;
+
 public class Lesson {
     private String name;
     private int durationHour;
@@ -43,6 +45,19 @@ public class Lesson {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lesson lesson = (Lesson) o;
+        return durationHour == lesson.durationHour && price == lesson.price && Objects.equals(name, lesson.name) && Objects.equals(lecturerName, lesson.lecturerName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, durationHour, lecturerName, price);
     }
 
     @Override
