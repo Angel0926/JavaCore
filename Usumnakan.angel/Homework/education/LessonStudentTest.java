@@ -2,9 +2,11 @@ package Homework.education;
 
 import Homework.education.commands.LessonStudentCommandsforadminoruser;
 import Homework.education.commands.LoginRegisterCommands;
+import Homework.education.exception.IllegalArgumentException;
 import Homework.education.exception.UserNotFoundException;
 import Homework.education.model.Lesson;
 import Homework.education.model.Student;
+import Homework.education.model.Type;
 import Homework.education.model.User;
 import Homework.education.storage.LessonStorage;
 import Homework.education.storage.StudentStorage;
@@ -22,11 +24,11 @@ public class LessonStudentTest implements LessonStudentCommandsforadminoruser, L
     static UserStorage userStorage = new UserStorage();
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException {
         lessonStorage.add(new Lesson("english", 2, "poxos", 5200));
         lessonStorage.add(new Lesson("french", 3, "dalios", 200));
-        userStorage.add(new User("ani", "ananyan", "ani@mail.com", "aniani1234", "user"));
-        userStorage.add(new User("lili", "lilyan", "lili@mail.com", "lililili1234", "admin"));
+//        userStorage.add(new User("ani", "ananyan", "ani@mail.com", "aniani1234", "user"));
+//        userStorage.add(new User("lili", "lilyan", "lili@mail.com", "lililili1234", "admin"));
         boolean isRun1 = true;
         while (isRun1) {
             LoginRegisterCommands.printCommands();
@@ -131,7 +133,7 @@ public class LessonStudentTest implements LessonStudentCommandsforadminoruser, L
         userStorage.print();
     }
 
-    private static void register() {
+    private static void register()  {
         System.out.println("please input email");
         String email = scanner.nextLine();
         try {
@@ -145,17 +147,19 @@ public class LessonStudentTest implements LessonStudentCommandsforadminoruser, L
             String surname = scanner.nextLine();
             System.out.println("please input user's password");
             String password = scanner.nextLine();
-            System.out.println("please input user's type(admin, user");
-            String type = scanner.nextLine();
-            if (type.equalsIgnoreCase("user") || type.equalsIgnoreCase("admin")) {
-                User user = new User(name, surname, email, password, type.toUpperCase());
+            System.out.println("please input user's type(admin, user)");
+            String type = scanner.nextLine().toUpperCase();
+            if (type.equals("ADMIN") || type.equals("USER")) {
+                Type newType = Type.valueOf(type);
+                User user = new User(name, surname, email, password, newType);
                 userStorage.add(user);
                 System.out.println("Thank you, user was registered");
             } else {
                 System.out.println("invalid type");
+                }
             }
         }
-    }
+
 
 
     private static void login() {
@@ -167,11 +171,11 @@ public class LessonStudentTest implements LessonStudentCommandsforadminoruser, L
             System.out.println("Please input password");
             String password = scanner.nextLine();
             if (byEmail.getPassword().equals(password)) {
-                if (byEmail.getType().equalsIgnoreCase("ADMIN")) {
+                if (byEmail.getType().equals(Type.ADMIN)) {
                     admin();
                 }
             }
-            if (byEmail.getType().equalsIgnoreCase("user")) {
+            if (byEmail.getType().equals(Type.USER)) {
                 user();
             }
         } catch (UserNotFoundException e) {
