@@ -1,23 +1,19 @@
 package Homework.File;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class FileUtilTest {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
-        FileUtil fileUtil=new FileUtil();
-        System.out.println("Please input txtpath");
-        String path=scanner.nextLine();
-       // System.out.println("PLease input keyword");
-      //  String keyword=scanner.nextLine();
-        System.out.println("Please input filename");
-        String filename=scanner.nextLine();
-        System.out.println("Please input content");
-        String content=scanner.nextLine();
-       // fileUtil.findLines(path, keyword);
-       // fileUtil.printSizeOfPackage(path);
-        fileUtil.createFileWithContent(path,filename,content);
-
+        System.out.println("please input path");
+        String path= scanner.nextLine();
+        //FileUtil.printSizeOfPath(path);
+        System.out.println("please input fileName");
+        String fileName= scanner.nextLine();
+        System.out.println("please input content");
+        String content= scanner.nextLine();
+        FileUtil.createFileWithContent(path, fileName, content);
     }
+
+
 }
