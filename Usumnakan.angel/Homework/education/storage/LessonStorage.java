@@ -2,34 +2,30 @@ package Homework.education.storage;
 
 
 import Homework.education.model.Lesson;
+import Homework.education.util.FileUtil;
 
-public class LessonStorage {
-    private Lesson[] lessons = new Lesson[10];
-    private int size;
+import java.util.LinkedList;
+import java.util.List;
+
+public class LessonStorage{
+    List<Lesson> lessons=new LinkedList<>();
 
     public void add(Lesson lesson) {
-        if (lessons.length == size) {
-            extend();
-        }
-        lessons[size++] = lesson;
+        lessons.add(lesson);
+        FileUtil.serializeLesson(lessons);
     }
 
-    private void extend() {
-        Lesson[] tmp = new Lesson[lessons.length + 10];
-        System.arraycopy(lessons, 0, tmp, 0, lessons.length);
-        lessons = tmp;
-    }
 
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(lessons[i]);
+        for (Lesson lesson : lessons) {
+            System.out.println(lesson);
         }
     }
 
     public  Lesson getByName(String name) {
-        for (int i = 0; i < size; i++) {
-            if (lessons[i].getName().equals(name)) {
-                return lessons[i];
+        for (Lesson lesson : lessons) {
+            if (lesson.getName().equals(name)) {
+                return lesson;
             }
         }
         return null;
@@ -37,21 +33,24 @@ public class LessonStorage {
 
 
     public void deleteLessonByName(String name) {
-        for (int i = 0; i < size; i++) {
-            if (lessons[i].getName().equals(name)) {
-                delete(i);
+        for (Lesson lesson : lessons) {
+            if (lesson.getName().equals(name)) {
+           remove(lesson);
                 System.out.println("The lesson's has been deleted");
             }
 
-        }
+        } FileUtil.serializeLesson(lessons);
+    }
+    public void remove(Lesson lesson) {
+        lessons.remove(lesson);
+        FileUtil.serializeLesson(lessons);
     }
 
-    private void delete(int index) {
-        for (int i = index + 1; i < size; i++) {
-            lessons[i - 1] = lessons[i];
+    public void initData(){
+        List<Lesson> lessons = FileUtil.deserializeLesson();
+        if(lessons!=null){
+            this.lessons=lessons;
         }
-        size--;
     }
-
 }
 

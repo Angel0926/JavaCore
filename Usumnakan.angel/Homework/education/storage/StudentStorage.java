@@ -2,63 +2,62 @@ package Homework.education.storage;
 
 import Homework.education.model.Lesson;
 import Homework.education.model.Student;
+import Homework.education.util.FileUtil;
 
-import java.util.Arrays;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class StudentStorage {
-    private Student[] students = new Student[10];
-    private int size;
+    List<Student> students = new LinkedList<>();
 
     public void add(Student student) {
-        if (size == students.length) {
-            extend();
-        }
-        students[size++] = student;
+        students.add(student);
+        FileUtil.serializeStudent(students);
     }
-
-    private void extend() {
-        Student[] tmp = new Student[students.length + 10];
-        System.arraycopy(students, 0, tmp, 0, size);
-        students = tmp;
-    }
-
     public void print() {
-        for (int i = 0; i < size; i++) {
-            System.out.println(students[i]);
+        for (Student student : students) {
+        System.out.println(student);
         }
     }
 
     public Student getByEmail(String email) {
-        for (int i = 0; i < size; i++) {
-            if (students[i].getEmail().equals(email)) {
-                return students[i];
+        for (Student student : students) {
+            if (student.getEmail().equals(email)) {
+                return student;
             }
         }
         return null;
     }
 
     public void printStudentsByLesson(Lesson lesson) {
-        for (int i = 0; i < size; i++) {
-            for(Lesson lesson1:students[i].getLessons()){
-            if (lesson1.equals(lesson)) {
-                System.out.println(students[i]);
-            }
-        }
-    }}
-
-    public void deleteStudentByEmail(String email) {
-        for (int i = 0; i < size; i++) {
-            if (students[i].getEmail().equals(email)) {
-                delete(i);
-                System.out.println("The student's has been deleted");
+        for (Student student : students) {
+            for (Lesson lesson1 : student.getLessons()) {
+                if (lesson1.equals(lesson)) {
+                    System.out.println(student);
+                }
             }
         }
     }
-
-    private void delete(int index) {
-        for (int i = index + 1; i < size; i++) {
-            students[i - 1] = students[i];
+    public void deleteStudentByEmail(String email) {
+        for (Student student : students) {
+            if (student.getEmail().equals(email)) {
+                remove(student);
+                System.out.println("The student's has been deleted");
+            }
         }
-        size--;
+        FileUtil.serializeStudent(students);
+    }
+    private void remove(Student student) {
+
+        students.remove(student);
+        FileUtil.serializeStudent(students);
+    }
+    public void initData(){
+        List<Student> students = FileUtil.deserializeStudent();
+        if(students!=null){
+            this.students=students;
+        }
+
     }
 }

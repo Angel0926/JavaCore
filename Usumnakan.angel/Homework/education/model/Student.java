@@ -3,22 +3,21 @@ package Homework.education.model;
 import Homework.education.model.Lesson;
 import Homework.education.util.DateUtil;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
-public class Student {
+public class Student implements Serializable {
 
     private String name;
     private String surname;
     private int age;
     private String email;
     private String phone;
-    private Lesson[] lessons;
+    private List<Lesson> lessons;
     private Date registeredDate;
 
-    public Student(String name, String surname, int age, String email, String phone,  Date registeredDate, Lesson[] lessons) {
+    public Student(String name, String surname, int age, String email, String phone, List<Lesson> lessons, Date registeredDate) {
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -68,11 +67,11 @@ public class Student {
         this.phone = phone;
     }
 
-    public Lesson[] getLessons() {
+    public List<Lesson> getLessons() {
         return lessons;
     }
 
-    public void setLessons(Lesson[] lessons) {
+    public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
     }
 
@@ -89,14 +88,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return age == student.age && Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(email, student.email) && Objects.equals(phone, student.phone) && Arrays.equals(lessons, student.lessons) && Objects.equals(registeredDate, student.registeredDate);
+        return age == student.age && Objects.equals(name, student.name) && Objects.equals(surname, student.surname) && Objects.equals(email, student.email) && Objects.equals(phone, student.phone) && Objects.equals(lessons, student.lessons) && Objects.equals(registeredDate, student.registeredDate);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(name, surname, age, email, phone, registeredDate);
-        result = 31 * result + Arrays.hashCode(lessons);
-        return result;
+        return Objects.hash(name, surname, age, email, phone, lessons, registeredDate);
     }
 
     @Override
@@ -107,8 +104,8 @@ public class Student {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", lessons=" + Arrays.toString(lessons) +
-                ", registeredDate=" + DateUtil.dateToString(registeredDate) +
+                ", lessons=" + lessons +
+                ", registeredDate=" + registeredDate +
                 '}';
     }
 }
