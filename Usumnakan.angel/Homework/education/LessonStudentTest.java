@@ -231,7 +231,7 @@ public class LessonStudentTest implements LessonStudentCommandsforadminoruser, L
         String phone = scanner.nextLine();
         System.out.println("please input registered date //dd/MM/yyyy//");
         String date = scanner.nextLine();
-        Date registeredDate = null;
+        Date registeredDate = new Date();
         try {
             registeredDate = DateUtil.stringToDate(date);
         } catch (ParseException e) {
